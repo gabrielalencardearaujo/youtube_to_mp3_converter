@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  --font-display: "Black Ops One", system-ui;
+  --font-normal: monospace;
+}
+
+header .text-display {
+  font-family: var(--font-display);
+}
+
+header :not(.text-display) {
+  font-family: var(--font-normal);
+}
