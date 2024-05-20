@@ -30,15 +30,14 @@ function Form() {
       if (response.data.status == 'ok') {
         console.log(response.data?.link);
         setDownload(response.data.link);
+        setError('');
       } else {
-        setError(response.data.msg);
+        setError(response.data?.msg);
       }
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(download);
 
   return (
     <>
