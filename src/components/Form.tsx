@@ -6,7 +6,7 @@ function Form() {
   const [download, setDownload] = React.useState('');
   const [error, setError] = React.useState('');
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     let idVideo = '';
 
