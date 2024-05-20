@@ -15,8 +15,6 @@ function Form() {
       if (key === 'v') idVideo = params;
     });
 
-    console.log(idVideo);
-
     const options = {
       method: 'GET',
       url: 'https://youtube-mp36.p.rapidapi.com/dl',
