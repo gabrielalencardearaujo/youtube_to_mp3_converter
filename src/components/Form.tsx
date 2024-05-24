@@ -10,10 +10,16 @@ function Form() {
     event.preventDefault();
     let idVideo = '';
 
-    const url = new URL(link);
-    url.searchParams.forEach((params, key) => {
-      if (key === 'v') idVideo = params;
-    });
+    try {
+      const url = new URL(link);
+      url.searchParams.forEach((params, key) => {
+        if (key === 'v') idVideo = params;
+      });
+    } catch (error: unknown) {
+      console.log(error);
+      setError('O link não é válido. Informe o link completo.');
+      setDownload('');
+    }
 
     const options = {
       method: 'GET',
@@ -28,14 +34,14 @@ function Form() {
     try {
       const response = await axios.request(options);
       if (response.data.status == 'ok') {
-        console.log(response.data?.link);
         setDownload(response.data.link);
         setError('');
-      } else {
+        setLink('');
         setError(response.data?.msg);
       }
     } catch (error) {
       console.error(error);
+      setError('Não foi possível realizar a conversão, tente novamente mais tarde.');
     }
   };
 
@@ -63,8 +69,8 @@ function Form() {
           </button>
         </form>
       </div>
-      <div className="-ms-44 mt-5 self-start italic text-red-400">{error}</div>
-      <div>
+      <div className="max-w-[480px] self-start text-wrap italic text-red-400">{error}</div>
+      <div className="mx-auto h-full">
         {download == '' ? (
           <a href={''} className=" cursor-default rounded-md bg-neutral-400 px-6 py-3 text-white">
             Download MP3
